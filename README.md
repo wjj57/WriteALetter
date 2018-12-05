@@ -40,7 +40,11 @@ var config = {
 
 ## 代码
 
-其实，主要不容易解决的地方在于如何一个一个的输出文字，在使用多个 ```setInterval()```的时候，你还会发现输出的文字是乱序的，这就需要想办法去解决乱序问题，或者用其他方法替代，其实能实现的方法还是比较多的。而且，还能在输出的时候，控制每一行。
+1. 其实，主要不容易解决的地方在于如何一个一个的输出文字，在使用多个 ```setInterval()```的时候，你还会发现输出的文字是乱序的，这就需要想办法去解决乱序问题，或者用其他方法替代，其实能实现的方法还是比较多的。
+
+2. 需要做到在输出的时候，控制每一行，这样，你进加入更多的特效(愿意尝试的朋友可以试试)。
+
+3. 本项目还用到了 H5 的新特性，使用了 [FileReader](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader) API，请自行去官网查看。 参考 : [Using files from web applications](https://developer.mozilla.org/zh-CN/docs/Web/API/File/Using_files_from_web_applications)
 
 ## 说明
 
