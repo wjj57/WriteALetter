@@ -20,7 +20,8 @@
 			counter:{
 
 				lines:0, // 记录行号
-				words:0
+				words:0, // 记录词数
+				lineWords:0 //每一行的词数
 			}
 		},
 
@@ -45,24 +46,38 @@
 					return;
 				}
 
-				if(buffer[index]=='\n'){
+				if(buffer[index]=='\n' || (Robot.prototype.props.counter.lineWords!=0&&Robot.prototype.props.counter.lineWords%46==0) ){
 
 					context = Robot.prototype.createParagraphDOM(index);
+					Robot.prototype.props.counter.lineWords=0; // 每一行的词数恢复为0
+
+					// 说明此时第2个条件满足了
+					if(buffer[index]!='\n'){
+
+						Robot.prototype.putChar(context,buffer,index);
+					}
+
 				}else{
 
-					Robot.prototype.adjustView();
-					context.innerText += buffer[index];
-
-					if(! /^\s+$/.test(buffer[index]) ){
-
-						Robot.prototype.record("word"); // 空白不计数
-					}
+					Robot.prototype.putChar(context,buffer,index);
 				}
 
 				++index;
 
 			},config.speed);
 			
+		},
+
+		putChar(context,buffer,index){
+
+			Robot.prototype.adjustView();
+
+			if(! /^\s+$/.test(buffer[index]) ){
+
+				Robot.prototype.record("word"); // 空白不计数
+				++Robot.prototype.props.counter.lineWords;
+				context.innerText += buffer[index];
+			}
 		},
 
 
